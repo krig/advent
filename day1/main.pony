@@ -8,7 +8,8 @@ class Day1 is StdinNotify
         _env = env
 
     fun ref apply(data: Array[U8] iso) =>
-        var input: String ref = String.from_iso_array(consume data).clone()
+        let instr = String.from_iso_array(consume data)
+        var input: String ref = consume instr
         input.strip()
         try
             var sum: USize = 0
