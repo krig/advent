@@ -59,11 +59,14 @@ class Notifier is StdinNotify
     _env.out.print(_consumer(consume input).string())
 
 actor Main
+  fun has_arg(env: Env, arg: String val): Bool =>
+    env.args.contains(arg, {(l, r): Bool => l == r})
+
   new create(env: Env) =>
-    if env.args.contains("test", {(l, r): Bool => l == r}) then
+    if has_arg(env, "test") then
       let args: Array[String] val = recover env.args.slice(1) end
       MainTest(recover Env.create(env.root, env.input, env.out, env.err, args, env.vars()) end)
-    elseif env.args.contains("part2", {(l, r): Bool => l == r}) then
+    elseif has_arg(env, "part2") then
       env.input(recover Notifier(env, NumSum2.create()) end, 2048)
     else
       env.input(recover Notifier(env, NumSum.create()) end, 2048)
