@@ -3,7 +3,6 @@ use "collections"
 use "files"
 use "itertools"
 use "promises"
-use "regex"
 use "oolong"
 
 interface ISizeReceiver
