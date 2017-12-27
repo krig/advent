@@ -1,0 +1,24 @@
+#!/bin/sh
+
+result=0
+export result
+
+expect() {
+	part="$1"
+	inp="$2"
+	exp="$3"
+	outp="$(./day3 $part $inp)"
+	if [ "$outp" = "$exp" ]; then
+		echo "$inp: OK, $exp = $outp"
+	else
+		echo "$inp: Expected $exp, got $outp"
+		result=1
+	fi
+}
+
+expect part1 1 0
+expect part1 12 3
+expect part1 23 2
+expect part1 1024 31
+
+exit $result
